@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('pemesanan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('konser_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('konser_id')->constrained('cascade');
             $table->integer('jumlah_tiket');
             $table->enum('status', ['menunggu', 'dikonfirmasi', 'dibatalkan']);
             $table->timestamps();
