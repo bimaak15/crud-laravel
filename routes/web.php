@@ -10,3 +10,6 @@ Route::get('/tiket', function () {
     return view('tiket');
 });
 
+Route::get('/admin', function () {
+    return view('admin');
+});
