@@ -61,6 +61,7 @@
   </table>
 </div>
 
-<script src="{{ asset('js/app-admin.js') }}"></script>
+    @vite('resources/js/app-admin.js')
+    
 </body>
 </html>

@@ -35,6 +35,6 @@
   <div id="listPemesanan"></div>
 </div>
 
-<script src="{{ asset('js/app-tiket.js') }}"></script>
+@vite('resources/js/app-tiket.js')
 </body>
 </html>
