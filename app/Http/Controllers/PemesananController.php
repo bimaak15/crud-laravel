@@ -120,4 +120,50 @@ class PemesananController extends Controller
                 'message' => 'Pemesanan dibatalkan'
             ], 200);
     }
+
+        public function indexAll()
+    {
+        $pemesanan = Pemesanan::with(['konser', 'user'])->get();
+
+        $data = $pemesanan->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'nama_user' => $item->user->name,
+                'nama_konser' => $item->konser->nama_konser,
+                'jumlah_tiket' => $item->jumlah_tiket,
+                'status' => $item->status,
+            ];
+        });
+
+        return response()->json([
+            'pemesanan' => $data
+        ], 200);
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|in:menunggu,dikonfirmasi,dibatalkan',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validasi Error'
+            ], 422);
+        }
+
+        $pemesanan = Pemesanan::find($id);
+
+        if (!$pemesanan) {
+            return response()->json([
+                'message' => 'Pemesanan tidak ditemukan'
+            ], 404);
+        }
+
+        $pemesanan->update(['status' => $request->status]);
+
+        return response()->json([
+                'message' => 'Status berhasil diperbarui'
+            ], 200);
+    }
 }
