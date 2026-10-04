@@ -16,4 +16,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/pemesanan', [PemesananController::class, 'index']);
     Route::post('/pemesanan/{id}', [PemesananController::class, 'update']);
     Route::delete('/pemesanan/{id}', [PemesananController::class, 'destroy']);
+
+    // Admin
+    Route::post('/konser', [KonserController::class, 'store']);
+    Route::post('/konser/{id}', [KonserController::class, 'update']);
+    Route::delete('/konser/{id}', [KonserController::class, 'destroy']);
+    Route::get('/admin/pemesanan', [PemesananController::class, 'indexAll']);
+    Route::post('/admin/pemesanan/{id}/status', [PemesananController::class, 'updateStatus']);
 });

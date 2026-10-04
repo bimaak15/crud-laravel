@@ -21,7 +21,7 @@
   <input type="text" id="name" placeholder="Nama (buat register)">
   <input type="email" id="email" placeholder="Email">
   <input type="password" id="password" placeholder="Password">
-  <button onclick="register()">Register</button>s
+  <button onclick="register()">Register</button>
   <button onclick="login()">Login</button>
   <p class="error" id="authError"></p>
 </div>
